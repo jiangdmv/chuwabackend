@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from django.conf import settings
 from django.utils import timezone
 
 class Category(models.Model):
@@ -23,7 +24,7 @@ class PostProduct(models.Model):
     quantity = models.PositiveIntegerField()
     image = models.URLField(null=True)
     published = models.DateTimeField(default=timezone.now)
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name=None, null=True)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name=None, null=True)
     status = models.CharField(max_length=10, choices=options, default='published')
     objects = models.Manager()  # default manager
     postobjects = PostObjects()  # custom manager
