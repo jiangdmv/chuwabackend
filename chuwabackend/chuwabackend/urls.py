@@ -19,15 +19,16 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
+from users.views import MyTokenObtainPairView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('api/', include('api.urls')),
     path('oauth/', include('oauth.urls')),
-    path('product/', include('product_api.urls')),
+    path('api/product/', include('product_api.urls')),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('api/user/', include('users.urls', namespace='users')),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/', MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
 ]

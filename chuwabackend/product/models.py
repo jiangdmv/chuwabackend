@@ -29,6 +29,9 @@ class PostProduct(models.Model):
     objects = models.Manager()  # default manager
     postobjects = PostObjects()  # custom manager
 
+    class Meta:
+        ordering = ('-published',)
+
     def __str__(self):
         return str(self.name) + ':$' + str(self.price)
 
